@@ -11,6 +11,19 @@ client=connect(host="mongodb+srv://razak:mohamed@cluster0.ptmlylq.mongodb.net/?r
 
 from . import documents
 
+def myRead(req,number):
+    received=documents.Bike.objects(regno=number).first()
+    print(received)
+    return HttpResponse("Get One by reading regno done")
+    
+
+def myShow(req):
+    myData=documents.Bike.objects.all()
+    for x in myData:
+        print(x)
+    return HttpResponse("Printing all")
+    
+
 def myInsert(req):
     bike1=documents.Bike()#
     bike1._init__("TN54U9478","Ignis Sigma","Suzuki",2021,1988.9,612800)
