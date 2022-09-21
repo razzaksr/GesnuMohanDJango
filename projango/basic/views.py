@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from mongoengine import connect
@@ -10,6 +11,24 @@ client=connect(host="mongodb+srv://razak:mohamed@cluster0.ptmlylq.mongodb.net/?r
 # Create your views here.
 
 from . import documents
+
+def myReadOnly(req):
+    obj = documents.Bike.objects.only('model','price','brand')
+    for x in obj:
+        print(x.to_json())
+    return HttpResponse("Specific fields via only")
+
+def myReadRequiring(req):
+    obj = documents.Bike.objects.fields(model=1,year=1,cc=1)
+    for x in obj:
+        print(x.regno,x.model,x.brand,x.price,x.cc,x.year)
+    return HttpResponse("Specific field done")
+
+def myReadIgnoring(req):
+    obj=documents.Bike.objects.exclude('regno')
+    for x in obj:
+        print(x.regno,x.model,x.brand,x.price,x.cc,x.year)
+    return HttpResponse("Excluding specific field done")
 
 def myRead(req,number):
     received=documents.Bike.objects(regno=number).first()
