@@ -8,5 +8,7 @@ urlpatterns = [
     path('read/<str:number>',views.myRead),
     path('readex',views.myReadIgnoring),
     path('readfi',views.myReadRequiring),
-    path('readon',views.myReadOnly)
+    path('readon',views.myReadOnly),
+    path('del',views.myDelete),
+    path('dels',views.myDeletes)
 ]

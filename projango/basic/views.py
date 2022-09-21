@@ -1,4 +1,3 @@
-import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from mongoengine import connect
@@ -11,6 +10,15 @@ client=connect(host="mongodb+srv://razak:mohamed@cluster0.ptmlylq.mongodb.net/?r
 # Create your views here.
 
 from . import documents
+
+def myDeletes(req):
+    documents.Bike.moreDeleteByRegno
+    return HttpResponse("TN54U9478 completly deleted")
+
+def myDelete(req):
+    received=documents.Bike.objects(regno="TN54U9478").first()
+    received.delete()
+    return HttpResponse("Document deleted")
 
 def myReadOnly(req):
     obj = documents.Bike.objects.only('model','price','brand')

@@ -1,4 +1,9 @@
 from mongoengine import *
+from certifi import where
+
+myCert=where()
+client=connect(host="mongodb+srv://razak:mohamed@cluster0.ptmlylq.mongodb.net/?retryWrites=true&w=majority",
+               db="forenoon",username="razak",password="mohamed",tlsCAFile=myCert)
 
 class Bike(Document):
     regno=StringField()
@@ -7,6 +12,12 @@ class Bike(Document):
     year=IntField(required=True)
     cc=FloatField()
     price=IntField()
+    
+    @queryset_manager
+    def moreDeleteByRegno(docs_cls,queryset):
+        docx=queryset.filter(regno="TN54U9478")
+        for x in docx:
+            x.delete()
     
     def _init__(self,a="",b="",c="",d=0,e=0.0,f=0):
         print("Constructor called")
