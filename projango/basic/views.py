@@ -11,6 +11,41 @@ client=connect(host="mongodb+srv://razak:mohamed@cluster0.ptmlylq.mongodb.net/?r
 
 from . import documents
 
+# inc, dec, push, set
+
+def myMobileCustomUp3(req):
+    documents.Mobile.objects(model='c3').update_one(set__model='M2 Pro')
+    return HttpResponse("C3 discontinued and expect m2 pro")
+
+def myMobileCustomUp2(req):
+    documents.Mobile.objects.update(push__features='smoke back case')
+    return HttpResponse("Smoke case added to all mobiles")
+
+def myMobileCustomUp(req):
+    documents.Mobile.myOwnUpdate
+    #documents.Mobile.objects(internal__gte=128).update(inc__internal=128)
+    return HttpResponse("Updated by condition")
+
+def myMobileArrange(req):
+    for x in documents.Mobile.objects.order_by("-price"):
+        print(x)
+    return HttpResponse("Sorted by price")
+
+def myMobileQuerysIn(req):
+    for x in documents.Mobile.objects(features__in=['dolby atmos','dolby vision']):
+        print(x)
+    return HttpResponse("Filtered by dolby")
+
+def myMobileQuerys(req):
+    for x in documents.Mobile.objects(price__gte=10000):
+        print(x)
+    return HttpResponse("Filtered 10000 above")
+
+def myMobileView(req):
+    for x in documents.Mobile.objects.all():
+        print(x)
+    return HttpResponse("Mobile viewed")
+
 def myDeletes(req):
     documents.Bike.moreDeleteByRegno
     return HttpResponse("TN54U9478 completly deleted")

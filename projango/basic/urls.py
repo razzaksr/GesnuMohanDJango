@@ -10,5 +10,12 @@ urlpatterns = [
     path('readfi',views.myReadRequiring),
     path('readon',views.myReadOnly),
     path('del',views.myDelete),
-    path('dels',views.myDeletes)
+    path('dels',views.myDeletes),
+    path('mobs',views.myMobileView),
+    path('mobcost',views.myMobileQuerys),
+    path('mobin',views.myMobileQuerysIn),
+    path('mobord',views.myMobileArrange),
+    path('mobup',views.myMobileCustomUp),
+    path('mobcase',views.myMobileCustomUp2),
+    path('mobmodel',views.myMobileCustomUp3)
 ]
